@@ -1,4 +1,4 @@
 class AppRoutes {
-  static const login = "/login";
-  static const main = "/register";
+  static const auth = "/auth";
+  static const home = "/home";
 }

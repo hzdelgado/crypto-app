@@ -7,6 +7,14 @@ class RegisterButton extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: controller.onRegisterPressed, child: const Text("Registrarse!", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),));
+    return Obx(() => ElevatedButton(
+        onPressed: controller.onRegisterPressed,
+        child: controller.isLoading.value
+            ? const CircularProgressIndicator(color: Colors.white)
+            : const Center(
+                child: Text(
+                "Registrarse!",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+              ))));
   }
 }

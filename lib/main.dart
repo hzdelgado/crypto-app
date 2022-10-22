@@ -1,6 +1,7 @@
 import 'package:bancolombia_test/features/auth/presentation/binding/auth_binding.dart';
 import 'package:bancolombia_test/features/auth/presentation/pages/auth_page.dart';
 import 'package:bancolombia_test/routes/app_routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ import 'core/dependency_injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await DependencyInjection.init();
   runApp(const MyApp());
 }

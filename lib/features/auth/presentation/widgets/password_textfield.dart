@@ -17,6 +17,7 @@ class PasswordTextfield extends GetView<AuthController>
         style: TextStyle(fontWeight: FontWeight.w500),
       ),
       TextFormField(
+        obscureText: true,
         controller: controller.passController,
         validator: validatePassword,
       )
