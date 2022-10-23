@@ -6,12 +6,13 @@ import 'package:get/get.dart';
 class StarButton extends GetView<ListCryptoController> {
   final CryptoCoin coin;
   final RxBool isEnabled = false.obs;
-  StarButton({Key? key, required this.coin}) : super(key: key);
+  StarButton({Key? key, required this.coin,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    isEnabled(coin.starred);
     return Obx(() => IconButton(onPressed: () {
-      isEnabled(!isEnabled.value);
-      controller.onStarButtonPressed(coin.id!); }, icon: isEnabled.isTrue? const Icon(Icons.star, color: Colors.amber): const Icon(Icons.star_border, color: Colors.grey)));
+      isEnabled(!coin.starred);
+      controller.onStarButtonPressed(coin, !coin.starred); }, icon: isEnabled.isTrue? const Icon(Icons.star, color: Colors.amber): const Icon(Icons.star_border, color: Colors.grey)));
   }
 }

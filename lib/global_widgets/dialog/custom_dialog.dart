@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:ui';
-
-import 'package:bancolombia_test/features/auth/data/models/firebase_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum MessageStatus { Success, Error }
+enum MessageStatus { success, error }
 
 class CustomDialog {
   closeDialog() {
@@ -15,7 +12,7 @@ class CustomDialog {
   Future<dynamic> showDialog(String status, String message, {String pageRoute = ""}) {
     Timer(const Duration(seconds: 1), () {
       closeDialog();
-      if(pageRoute.isNotEmpty && status != MessageStatus.Error.name) {
+      if(pageRoute.isNotEmpty && status != MessageStatus.error.name) {
         Get.toNamed(pageRoute);
       }
     });

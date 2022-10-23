@@ -2,7 +2,6 @@
 import 'package:bancolombia_test/features/list_crypto/data/datasources/coingecko_api.dart';
 import 'package:bancolombia_test/features/list_crypto/data/datasources/coingecko_manager.dart';
 import 'package:bancolombia_test/features/list_crypto/domain/repositories/crypto_coin_repository.dart';
-import 'package:bancolombia_test/features/list_crypto/presentation/controller/list_crypto_controller.dart';
 import 'package:bancolombia_test/global_widgets/dialog/custom_dialog.dart';
 import 'package:get/instance_manager.dart';
 import '../features/auth/data/datasources/firebase_auth.dart';

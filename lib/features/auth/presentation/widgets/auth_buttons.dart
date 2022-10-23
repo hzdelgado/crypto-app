@@ -1,6 +1,5 @@
 import 'package:bancolombia_test/features/auth/presentation/controller/auth_controller.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'login_btn.dart';

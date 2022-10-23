@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bancolombia_test/features/list_crypto/data/datasources/coingecko_manager.dart';
 import 'package:bancolombia_test/features/list_crypto/domain/entities/crypto_coin.dart';
 import 'package:bancolombia_test/features/list_crypto/domain/repositories/crypto_coin_repository.dart';
@@ -21,28 +19,51 @@ class ListCryptoController extends GetxController {
     super.onInit();
   }
 
+  getCoinIdList(List<CryptoCoin> coins) {
+    List<String> ids = [];
+    for (var c in coins) {
+      if (c.id != null && !ids.contains(c.id)) {
+        ids.add(c.id!);
+      }
+    }
+    return ids;
+  }
+
   getCryptoCoins() async {
     var coinList =
         await coinGeckoManager.getCoinsDetailed(page: currentPage.value);
     if (coinList != null) {
-      paginatedCryptoCoins(coinList);
-      cryptoCoinBox.saveCryptoCoins(paginatedCryptoCoins);
+      List<String> ids = getCoinIdList(coinList);
+      paginatedCryptoCoins(cryptoCoinBox.getCryptoCoinByIds(ids));
+      cryptoCoinBox.saveCryptoCoins(coinList);
+      allCryptoCoins.clear();
       allCryptoCoins.addAll(cryptoCoinBox.getCryptoCoins() ?? []);
     }
   }
 
   onSearchTermChanged(String value) {
-    List<CryptoCoin> result =
-        allCryptoCoins.where((element) => element.name!.toLowerCase().contains(value.toLowerCase())).toList();
-    paginatedCryptoCoins.clear();
-    if (result.length <= 15) {
-      paginatedCryptoCoins.addAll(result);
+    if (value.isNotEmpty) {
+      List<CryptoCoin> result = allCryptoCoins
+          .where((element) =>
+              element.name!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+      paginatedCryptoCoins.clear();
+      if (result.length <= 15) {
+        paginatedCryptoCoins.addAll(result);
+      } else {
+        paginatedCryptoCoins.addAll(result.sublist(0, 15));
+      }
     } else {
-      paginatedCryptoCoins.addAll(result.sublist(0, 15));
+      currentPage(1);
+      getCryptoCoins();
     }
   }
 
-  onStarButtonPressed(String id) {}
+  onStarButtonPressed(CryptoCoin coin, bool isStarred) {
+    coin.starred = isStarred;
+    cryptoCoinBox.saveCryptoCoin(coin);
+    //CryptoCoin? cryptoCoin = cryptoCoinBox.getCryptoCoinById(coin.id!);
+  }
 
   onBackPagePressed() {
     if (searchBarController.text.isEmpty) {

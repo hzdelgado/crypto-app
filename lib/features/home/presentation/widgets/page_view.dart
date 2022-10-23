@@ -1,5 +1,4 @@
 import 'package:bancolombia_test/features/home/presentation/controller/home_controller.dart';
-import 'package:bancolombia_test/features/list_crypto/presentation/pages/list_crypto_page.dart';
 import 'package:bancolombia_test/features/starred/presentation/pages/starred_page.dart';
 import 'package:bancolombia_test/features/versus/presentation/pages/versus_page.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +26,8 @@ extension EntryExtension on Entries {
 Widget get getPage {
     return  [
       const ListCryptoNavigator(),
-      StarredPage(),
-      VersusPage()
+      const StarredPage(),
+      const VersusPage()
     ][index];
   }
 }

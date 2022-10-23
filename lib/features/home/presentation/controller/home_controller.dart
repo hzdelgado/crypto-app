@@ -12,6 +12,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     pageController = PageController(initialPage: 0);
+    super.onInit();
   }
 
   changeSelectedPage(int index) {

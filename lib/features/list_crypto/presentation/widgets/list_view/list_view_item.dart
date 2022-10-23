@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class CryptoListViewItem extends StatelessWidget {
   final CryptoCoin coin;
-  const CryptoListViewItem({Key? key, required this.coin}) : super(key: key);
+  final bool showStarred;
+  const CryptoListViewItem({Key? key, required this.coin, this.showStarred = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CryptoListViewItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
         Flexible(child: Text("${coin.name} (${coin.symbol!.toUpperCase()}) - ${coin.currentPrice} USD")),
-        StarButton(coin: coin)
+        showStarred? StarButton(coin: coin): const SizedBox()
       ])
     );
   }

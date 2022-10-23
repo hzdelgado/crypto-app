@@ -12,46 +12,48 @@ class AuthManager {
 
   Future<FirebaseResponse?> signIn(String email, String password) async {
     try {
-      UserCredential user = await firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       return FirebaseResponse(
-          status: MessageStatus.Success.name, message: Strings.firebaseSuccessfulSignIn);
+          status: MessageStatus.success.name,
+          message: Strings.firebaseSuccessfulSignIn);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return FirebaseResponse(
-            status: MessageStatus.Error.name,
+            status: MessageStatus.error.name,
             message: Strings.firebaseUserNotFound);
       } else if (e.code == 'wrong-password') {
         return FirebaseResponse(
-            status: MessageStatus.Error.name,
+            status: MessageStatus.error.name,
             message: Strings.firebaseWrongPassword);
       }
     } catch (e) {
       return FirebaseResponse(
-          status: MessageStatus.Error.name, message: "Algo salió mal");
+          status: MessageStatus.error.name, message: "Algo salió mal");
     }
     return null;
   }
 
   Future<FirebaseResponse?> signUp(String email, String password) async {
     try {
-    UserCredential user = await firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return FirebaseResponse(
-          status: MessageStatus.Success.name, message: Strings.firebaseSuccessfulSignUp);
+      await firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return FirebaseResponse(
+          status: MessageStatus.success.name,
+          message: Strings.firebaseSuccessfulSignUp);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return FirebaseResponse(
-            status: MessageStatus.Error.name,
+            status: MessageStatus.error.name,
             message: Strings.firebaseWeakPassword);
       } else if (e.code == 'email-already-in-use') {
         return FirebaseResponse(
-            status: MessageStatus.Error.name,
+            status: MessageStatus.error.name,
             message: Strings.firebaseEmailAlreadyInUse);
       }
     } catch (e) {
       return FirebaseResponse(
-          status: MessageStatus.Error.name, message: "Algo salió mal");
+          status: MessageStatus.error.name, message: "Algo salió mal");
     }
     return null;
   }

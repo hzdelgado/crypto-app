@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bancolombia_test/features/list_crypto/domain/entities/crypto_coin.dart';
 import 'package:bancolombia_test/objectbox.g.dart';
 import 'package:get/get.dart';
@@ -17,19 +15,28 @@ class CryptoCoinRepository {
     }
   }
 
+  CryptoCoin? getCryptoCoinById(String id) {
+    final query = cryptoCoinBox.query(CryptoCoin_.id.equals(id)).build();
+    final coins = query.find();
+    query.close();
+    if (coins.isNotEmpty) {
+      return coins.first;
+    }
+    return null;
+  }
+
   void saveCryptoCoins(List<CryptoCoin> cryptoCoins) {
-    List<CryptoCoin>? current =  getCryptoCoins();
+    List<CryptoCoin>? current = getCryptoCoins();
     List<CryptoCoin> newCoins = [];
-    if(current != null) {
+    if (current != null) {
       for (var cc in cryptoCoins) {
         var found = current.firstWhereOrNull((element) => element.id == cc.id);
-        if(found == null) {
+        if (found == null) {
           newCoins.add(cc);
         }
       }
     }
     cryptoCoinBox.putMany(newCoins);
-    
   }
 
   List<CryptoCoin>? getCryptoCoins() {
@@ -37,5 +44,25 @@ class CryptoCoinRepository {
       return null;
     }
     return cryptoCoinBox.getAll();
+  }
+
+  List<CryptoCoin>? getCryptoCoinByIds(List<String> ids) {
+    List<CryptoCoin> results = [];
+    for (String id in ids) {
+      final query = cryptoCoinBox.query(CryptoCoin_.id.equals(id)).build();
+      final coins = query.find();
+      query.close();
+      if (coins.isNotEmpty) {
+        results.add(coins.first);
+      }
+    }
+    return results;
+  }
+
+  List<CryptoCoin>? findStarredCryptoCoins() {
+    final query = cryptoCoinBox.query(CryptoCoin_.starred.equals(true)).build();
+    final coins = query.find();
+    query.close();
+    return coins;
   }
 }

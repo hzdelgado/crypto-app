@@ -1,5 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: must_be_immutable
 
+import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -13,47 +14,16 @@ class CryptoCoin extends Equatable {
   final String? name;
   final String? symbol;
   final double? currentPrice;
-  final bool? starred;
+  bool starred;
   CryptoCoin({
     this.internalId,
     this.id,
     this.name,
     this.symbol,
     this.currentPrice,
-    this.starred
+    this.starred = false
   });
 
-  
-
-  
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      "internal_id": internalId,
-      'id': id,
-      'name': name,
-      'symbol': symbol,
-      'current_price': currentPrice,
-      'starred': starred,
-    };
-  }
-
-  factory CryptoCoin.fromMap(Map<String, dynamic> map) {
-    return CryptoCoin(
-      internalId: map['internal_id'] != null ? map['internal_id'] as int : null,
-      id: map['id'] != null ? map['id'] as String : null,
-      name: map['name'] != null ? map['name'] as String : null,
-      symbol: map['symbol'] != null ? map['symbol'] as String : null,
-      currentPrice: map['current_price'] != null ? map['current_price'] as double : null,
-      starred: map['starred'] != null ? map['starred'] as bool : null,
-
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory CryptoCoin.fromJson(String source) => CryptoCoin.fromMap(json.decode(source) as Map<String, dynamic>);
-  
   @override
   List<Object?> get props => [
     internalId,
@@ -62,4 +32,30 @@ class CryptoCoin extends Equatable {
     symbol,
     currentPrice,
     starred];
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'internalId': internalId,
+      'id': id,
+      'name': name,
+      'symbol': symbol,
+      'currentPrice': currentPrice,
+      'starred': starred,
+    };
+  }
+
+  factory CryptoCoin.fromMap(Map<String, dynamic> map) {
+    return CryptoCoin(
+      internalId: map['internalId'] != null ? map['internalId'] as int : null,
+      id: map['id'] != null ? map['id'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
+      symbol: map['symbol'] != null ? map['symbol'] as String : null,
+      currentPrice: map['currentPrice'] != null ? map['currentPrice'] as double : null,
+      starred: map['starred'] != null ? map['starred'] as bool : false,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory CryptoCoin.fromJson(String source) => CryptoCoin.fromMap(json.decode(source) as Map<String, dynamic>);
 }
