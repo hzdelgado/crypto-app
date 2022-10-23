@@ -7,23 +7,16 @@ class HomeController extends GetxController {
   final RxInt selectedIndex = 0.obs;
   final selectedEntry = Entries.listCrypto.obs;
   late PageController pageController;
-final coinGeckoManager = Get.find<CoinGeckoManager>();
+  final coinGeckoManager = Get.find<CoinGeckoManager>();
+  final RxInt selectedPage = 1.obs;
   @override
   void onInit() {
     pageController = PageController(initialPage: 0);
-    getCryptoCoins();
   }
 
   changeSelectedPage(int index) {
     selectedIndex(index);
     selectedEntry(Entries.values[index]);
-
   }
 
-    getCryptoCoins() async {
-
-
-
-    var coinList = await coinGeckoManager.getCoinsDetailed();
-  }
 }

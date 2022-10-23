@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:objectbox/objectbox.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 @Entity()
-class CryptoCoin {
+class CryptoCoin extends Equatable {
   @Id()
   int? internalId;
   @Unique()
@@ -52,4 +53,13 @@ class CryptoCoin {
   String toJson() => json.encode(toMap());
 
   factory CryptoCoin.fromJson(String source) => CryptoCoin.fromMap(json.decode(source) as Map<String, dynamic>);
+  
+  @override
+  List<Object?> get props => [
+    internalId,
+    id,
+    name,
+    symbol,
+    currentPrice,
+    starred];
 }

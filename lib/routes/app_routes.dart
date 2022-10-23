@@ -1,6 +1,8 @@
 import 'package:bancolombia_test/features/auth/presentation/pages/auth_page.dart';
 import 'package:bancolombia_test/features/home/presentation/binding/home_binding.dart';
 import 'package:bancolombia_test/features/home/presentation/pages/home_page.dart';
+import 'package:bancolombia_test/features/list_crypto/presentation/binding/list_crypto_binding.dart';
+import 'package:bancolombia_test/features/list_crypto/presentation/pages/list_crypto_page.dart';
 import 'package:get/get.dart';
 
 import '../features/auth/presentation/binding/auth_binding.dart';
@@ -18,6 +20,12 @@ class AppPages {
       name: AppRoutes.home,
       page: () => const HomePage(),
       binding: HomeBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.list,
+      page: () => const ListCryptoPage(),
+      binding: ListCryptoBinding(),
       transition: Transition.rightToLeft,
     ),
 

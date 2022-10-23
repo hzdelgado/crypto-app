@@ -5,6 +5,8 @@ import 'package:bancolombia_test/features/versus/presentation/pages/versus_page.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../navigators/listo_crypto_navigator.dart';
+
 class HomePageView extends GetView<HomeController> {
   const HomePageView({Key? key}) : super(key: key);
 
@@ -24,7 +26,7 @@ enum Entries { listCrypto, starred, versus}
 extension EntryExtension on Entries {
 Widget get getPage {
     return  [
-      ListCryptoPage(),
+      const ListCryptoNavigator(),
       StarredPage(),
       VersusPage()
     ][index];

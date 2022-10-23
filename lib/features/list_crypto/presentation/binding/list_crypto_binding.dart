@@ -4,7 +4,7 @@ import 'package:get/instance_manager.dart';
 class ListCryptoBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ListCryptoController(), fenix: true);
+    Get.lazyPut(() => ListCryptoController(),);
   }
  
 }
