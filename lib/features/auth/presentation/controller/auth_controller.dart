@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bancolombia_test/features/auth/data/datasources/firebase_auth.dart';
-import 'package:bancolombia_test/features/auth/data/datasources/firebase_response.dart';
+import 'package:bancolombia_test/features/auth/data/models/firebase_response.dart';
 import 'package:bancolombia_test/routes/app_pages.dart';
 import 'package:bancolombia_test/routes/app_routes.dart';
 import 'package:flutter/material.dart';

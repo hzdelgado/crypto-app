@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:bancolombia_test/features/auth/data/datasources/firebase_response.dart';
+import 'package:bancolombia_test/features/auth/data/models/firebase_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

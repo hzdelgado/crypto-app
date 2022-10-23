@@ -1,5 +1,5 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:bancolombia_test/features/auth/data/datasources/firebase_response.dart';
+import 'package:bancolombia_test/features/auth/data/models/firebase_response.dart';
 import 'package:bancolombia_test/global_widgets/dialog/custom_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
