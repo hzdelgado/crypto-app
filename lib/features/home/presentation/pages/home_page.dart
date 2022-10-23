@@ -1,4 +1,6 @@
 import 'package:bancolombia_test/features/home/presentation/controller/home_controller.dart';
+import 'package:bancolombia_test/features/home/presentation/widgets/bottom_nav_bar.dart';
+import 'package:bancolombia_test/features/home/presentation/widgets/page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,8 +13,9 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async => false,
-        child: Scaffold(
-      body: Text("Home"),
+        child: const Scaffold(
+      body: HomePageView(),
+      bottomNavigationBar: BottomNavBar(),
     ));
   }
 }

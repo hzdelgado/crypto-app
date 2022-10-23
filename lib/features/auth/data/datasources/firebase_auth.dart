@@ -20,11 +20,11 @@ class AuthManager {
       if (e.code == 'user-not-found') {
         return FirebaseResponse(
             status: MessageStatus.Error.name,
-            message: Strings.firebaseWeakPassword);
+            message: Strings.firebaseUserNotFound);
       } else if (e.code == 'wrong-password') {
         return FirebaseResponse(
             status: MessageStatus.Error.name,
-            message: Strings.firebaseEmailAlreadyInUse);
+            message: Strings.firebaseWrongPassword);
       }
     } catch (e) {
       return FirebaseResponse(
