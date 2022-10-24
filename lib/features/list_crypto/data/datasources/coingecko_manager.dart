@@ -19,6 +19,8 @@ class CoinGeckoManager {
       );
       return response;
     }
-    return null;
+    return Future.error(
+      Exception(),
+    );
   }
 }

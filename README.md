@@ -5,6 +5,6 @@ Coingecko API is used as datasource. GetX was used for state management and Obje
 
 ## Instructions
 
-To run the application is necessary to have installed flutter 3.0.0 or upper. Run the following commands before running the app:
+To run the application is necessary to have installed flutter 3.0.0 or upper. Run the following commands before compiling the app:
 
- - flutter pub run build_runner build.
+ - flutter pub run build_runner build [Necessary to create the objectbox and mockito schemas].

@@ -11,14 +11,15 @@ class StarredController extends GetxController {
   @override
   void onInit() {
     getCryptoCoins();
+    eventListener();
     super.onInit();
   }
 
-  /*eventListener() {
+  eventListener() {
     updateStr.stream.listen((e) {
       getCryptoCoins();
     });
-  }*/
+  }
 
   getCryptoCoins() async {
     List<CryptoCoin>? coins = cryptoCoinBox.findStarredCryptoCoins();

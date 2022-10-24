@@ -1,6 +1,7 @@
 import 'package:bancolombia_test/features/list_crypto/data/datasources/coingecko_manager.dart';
 import 'package:bancolombia_test/features/list_crypto/domain/entities/crypto_coin.dart';
 import 'package:bancolombia_test/features/list_crypto/domain/repositories/crypto_coin_repository.dart';
+import 'package:bancolombia_test/features/starred/presentation/controller/starred_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ class ListCryptoController extends GetxController {
   RxList<CryptoCoin> paginatedCryptoCoins = <CryptoCoin>[].obs;
   RxList<CryptoCoin> allCryptoCoins = <CryptoCoin>[].obs;
   final coinGeckoManager = Get.find<CoinGeckoManager>();
+  final starredController = Get.find<StarredController>();
   final searchBarController = TextEditingController();
   final cryptoCoinBox = Get.find<CryptoCoinRepository>();
   final RxInt searchResultPage = 1.obs;
@@ -62,6 +64,7 @@ class ListCryptoController extends GetxController {
   onStarButtonPressed(CryptoCoin coin, bool isStarred) {
     coin.starred = isStarred;
     cryptoCoinBox.saveCryptoCoin(coin);
+    starredController.updateStr.add(true);
     //CryptoCoin? cryptoCoin = cryptoCoinBox.getCryptoCoinById(coin.id!);
   }
 
