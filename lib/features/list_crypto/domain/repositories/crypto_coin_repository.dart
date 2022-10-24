@@ -26,16 +26,16 @@ class CryptoCoinRepository {
   }
 
   void saveCryptoCoins(List<CryptoCoin> cryptoCoins) {
-    List<CryptoCoin>? current = getCryptoCoins();
+    List<CryptoCoin> current = getCryptoCoins() ?? [];
     List<CryptoCoin> newCoins = [];
-    if (current != null) {
-      for (var cc in cryptoCoins) {
-        var found = current.firstWhereOrNull((element) => element.id == cc.id);
-        if (found == null) {
-          newCoins.add(cc);
-        }
+   
+    for (var cc in cryptoCoins) {
+      var found = current.firstWhereOrNull((element) => element.id == cc.id);
+      if (found == null) {
+        newCoins.add(cc);
       }
     }
+    
     cryptoCoinBox.putMany(newCoins);
   }
 

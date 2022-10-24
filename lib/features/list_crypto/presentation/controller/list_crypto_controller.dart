@@ -35,9 +35,9 @@ class ListCryptoController extends GetxController {
     var coinList =
         await coinGeckoManager.getCoinsDetailed(page: currentPage.value);
     if (coinList != null) {
+      cryptoCoinBox.saveCryptoCoins(coinList);
       List<String> ids = getCoinIdList(coinList);
       paginatedCryptoCoins(cryptoCoinBox.getCryptoCoinByIds(ids));
-      cryptoCoinBox.saveCryptoCoins(coinList);
       allCryptoCoins.clear();
       allCryptoCoins.addAll(cryptoCoinBox.getCryptoCoins() ?? []);
     }
