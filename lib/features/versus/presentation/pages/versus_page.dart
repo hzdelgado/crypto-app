@@ -6,7 +6,9 @@ class VersusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text("Versus"),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Text("En mantenimiento")),
     );
   }
 }

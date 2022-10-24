@@ -19,7 +19,7 @@ class BottomNavBar extends GetView<HomeController> {
             label: "Favoritos"
           ),
           BottomNavigationBarItem(
-            icon: Text("VS", style: TextStyle(fontWeight: FontWeight.w700),),
+            icon: Text("VS", style: TextStyle(fontWeight: FontWeight.w700, color: Colors.grey),),
             label: "Versus"
           ),
         ],
